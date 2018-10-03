@@ -16,10 +16,15 @@ import java.util.*;
 
 
 
-public class main {
+public class Assignment_Algorithm{
 	/*Depth-First Search Algorithm that takes a Maze (by reference) in as a parameter.
 	 *The Maze class is defined in Maze.java
          */
+     public static void main(String[] args) {
+        
+         
+    }
+
 
     
 
