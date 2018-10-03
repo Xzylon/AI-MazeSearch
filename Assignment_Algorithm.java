@@ -5,7 +5,6 @@
  * BFS
  * Greedy Best-first search
  * A* search
- * Uniform Cost Search
  *
 */
 
