@@ -23,6 +23,11 @@ public class Assignment_Algorithm{
         
          
     }
+	
+	static void BreadthFirst(node[][] maze)//Written by Robert Tiller
+    {
+		
+	}
 
 
     
