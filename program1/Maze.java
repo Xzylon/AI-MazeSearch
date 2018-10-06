@@ -29,6 +29,7 @@ public class Maze {
             maze = new Node[rows][columns]; // instantiate the maze with known dimensions
             
             // rescan the file now that the dimensions are known
+            // this results in quadrant IV or the origin is in the upper left corner of the grid 
             scanner = new Scanner(file);
             String line; // a line of the file
             while(scanner.hasNextLine()) {
@@ -68,18 +69,12 @@ public class Maze {
         int y = currentNode.y;
         
         // return true if its not a wall(&)
-        if(direction == "up") {
-            if (maze.grid[x][y-1].type != '&')
-                return true;
-            else
-                return false;
-        }
-        /*
-        * TODO:
-        * Add the other directions
-        */
-        else
-            return false;
+        if ( (direction == "north" && maze.grid [x]   [y-1].type != '&') ||
+             (direction == "east"  && maze.grid [x+1]   [y].type != '&') ||
+             (direction == "south" && maze.grid [x]   [y+1].type != '&') ||
+             (direction == "west"  && maze.grid [x-1]   [y].type != '&') ) {
+        	return true;        	
+        } else {return false;}        	
    }
     
     

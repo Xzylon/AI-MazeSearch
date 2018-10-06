@@ -23,5 +23,8 @@ public class aStarSearch {
     // @param  y  a sample parameter for a method
     // @return    the sum of x and y
     ///
-
+    public int blankmethod(int x) {
+        // 
+    	return 0;
+    }
 }
