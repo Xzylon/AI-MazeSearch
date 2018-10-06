@@ -69,11 +69,11 @@ public class Maze {
         int x = currentNode.x;
         int y = currentNode.y;
         
-        // return true if its not a wall(&)
-        if ( (direction == "north" && maze.grid [x]   [y-1].type != '&') ||
-             (direction == "east"  && maze.grid [x+1]   [y].type != '&') ||
-             (direction == "south" && maze.grid [x]   [y+1].type != '&') ||
-             (direction == "west"  && maze.grid [x-1]   [y].type != '&') ) {
+        // return true if its not a wall(%)
+        if ( (direction == "north" && maze.grid [x]   [y-1].type != '%') ||
+             (direction == "east"  && maze.grid [x+1]   [y].type != '%') ||
+             (direction == "south" && maze.grid [x]   [y+1].type != '%') ||
+             (direction == "west"  && maze.grid [x-1]   [y].type != '%') ) {
         	return true;        	
         } else {return false;}        	
    }
@@ -104,13 +104,12 @@ public class Maze {
     }    
     
     public int calculateManDist(Node node1, Node node2) {
-        // 
     	int distance = 0;
     	
     	if(node1.x > node2.x) { distance = node1.x - node2.x; }
     	else { distance = node2.x - node1.x; }
-    	if(node1.y > node2.y) { distance = node1.y - node2.y; } 
-    	else { distance = node2.y - node1.y; }    	
+    	if(node1.y > node2.y) { distance = distance + (node1.y - node2.y); } 
+    	else { distance = distance + (node2.y - node1.y); }    	
         return distance;
     }
 }
