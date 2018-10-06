@@ -2,15 +2,24 @@ import java.io.File;
 import java.util.Scanner;
 
 public class Maze {
-    public static Node[][] scanMaze(String fileName) {
+    int rows;
+    int columns;
+    Node start;
+    Node goal;
+    Node currentNode;
+    Node[][] grid;
+    
+    public Maze(String fileName) {
+        this.grid = scanMaze(fileName);
+    }
+    
+    public Node[][] scanMaze(String fileName) {
         try {
             Node[][] maze;
             File file = new File(fileName);
             Scanner scanner = new Scanner(file);
             
             // find the number of rows and columns
-            int rows = 0;    // # of rows
-            int columns = 0; // # of columns
             while(scanner.hasNextLine()){
                 rows++;
                 columns = scanner.nextLine().length();
@@ -24,7 +33,13 @@ public class Maze {
                 for (int i = 0; i < rows; i++) {
                     line = scanner.nextLine();
                     for (int j = 0; j < columns; j++) {
-                        maze[i][j] = new Node(line.charAt(j));
+                        maze[i][j] = new Node(i, j, line.charAt(j));
+                        if(line.charAt(j) == 'P') {
+                            start = maze[i][j];
+                            currentNode = maze[i][j];
+                        }
+                        if(line.charAt(j) == '*')
+                            goal = maze[i][j];
                     }
                 }
             }
@@ -37,19 +52,13 @@ public class Maze {
         }
     }
     
-    public static void printMaze(Node[][] maze) {
-        for (int i = 0; i < maze.length; i++) {
-            for (int j = 0; j < maze[1].length; j++) {
-                System.out.print(maze[i][j].type);
+    public static void printMaze(Maze maze) {
+        for (int i = 0; i < maze.rows; i++) {
+            for (int j = 0; j < maze.columns; j++) {
+                System.out.print(maze.grid[i][j].type);
             }
             System.out.println();
         }
     }
     
-    public static boolean isGoal(Node node) {
-        if(node.type == '*')
-            return true;
-        else
-            return false;
-    }
 }
