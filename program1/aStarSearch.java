@@ -15,7 +15,7 @@ public class aStarSearch {
         // initialize instance variables
     	maze = inMaze;
     	currentNode = maze.start;
-    	northValue = eastValue = southValue = westValue = 0;
+    	traveledDist = northValue = eastValue = southValue = westValue = 0;
     }
 
     //*

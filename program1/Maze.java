@@ -64,6 +64,7 @@ public class Maze {
         }
     }
     
+    //check if there is a wall in a direction
     public boolean canMove(Maze maze, Node currentNode, String direction) {
         int x = currentNode.x;
         int y = currentNode.y;
@@ -75,6 +76,23 @@ public class Maze {
              (direction == "west"  && maze.grid [x-1]   [y].type != '&') ) {
         	return true;        	
         } else {return false;}        	
+   }
+    
+    //return a node that is one space away in a given direction, for the sake of moving
+    public boolean goDirection(Maze maze, Node currentNode, String direction) {
+        int x = currentNode.x;
+        int y = currentNode.y;
+        
+        // return true if its not a wall(&)
+        if        ( direction == "north" && canMove(maze, currentNode, "north") ) {
+        	return maze.node[x][y-1];
+        } else if ( direction ==  "east" && canMove(maze, currentNode,  "east") ) {
+        	return Node[x+1][y];
+        } else if ( direction == "south" && canMove(maze, currentNode, "south") ) { 
+        	return Node[x][y+1];
+        } else  if ( direction == "west" && canMove(maze, currentNode,  "west") ) { 
+        	return Node[x-1][y];
+        } else {return null;}        	
    }
     
     // goal test
