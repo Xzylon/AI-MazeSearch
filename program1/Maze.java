@@ -77,7 +77,6 @@ public class Maze {
         } else {return false;}        	
    }
     
-    
     // goal test
     public boolean isGoal(Node node) {
         if(node.type == '*')
