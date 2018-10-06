@@ -63,4 +63,42 @@ public class Maze {
         }
     }
     
+    public boolean canMove(Maze maze, Node currentNode, String direction) {
+        int x = currentNode.x;
+        int y = currentNode.y;
+        
+        // return true if its not a wall(&)
+        if(direction == "up") {
+            if (maze.grid[x][y-1].type != '&')
+                return true;
+            else
+                return false;
+        }
+        /*
+        * TODO:
+        * Add the other directions
+        */
+        else
+            return false;
+   }
+    
+    
+    // goal test
+    public boolean isGoal(Node node) {
+        if(node.type == '*')
+            return true;
+        else
+            return false;
+    }    
+    
+    public int calculateManDist(Node node1, Node node2) {
+        // 
+    	int distance = 0;
+    	
+    	if(node1.x > node2.x) { distance = node1.x - node2.x; }
+    	else { distance = node2.x - node1.x; }
+    	if(node1.y > node2.y) { distance = node1.y - node2.y; } 
+    	else { distance = node2.y - node1.y; }    	
+        return distance;
+    }
 }
