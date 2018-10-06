@@ -1,3 +1,15 @@
+/*AI
+ *By: Robert Tiller, Beau Anderson, Kyle Ungersma, and Jason Armstrong
+ *
+ * DFS
+ * BFS
+ * Greedy Best-first search
+ * A* search
+ *
+*/
+
+
+
 import java.math.*;
 import java.io.*;
 import java.util.*;
