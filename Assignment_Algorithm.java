@@ -8,10 +8,10 @@
  *
 */
 
-//imported for the use of calculating the power of integers (x^y)
-import java.math.*;
-import java.io.*;
-import java.util.*;
+// imported for the use of calculating the power of integers (x^y)
+// import java.math.*;
+// import java.io.*;
+// import java.util.*;
 
 
 
@@ -24,7 +24,7 @@ public class Assignment_Algorithm{
          
     }
 	
-	static void BreadthFirst(node[][] maze)//Written by Robert Tiller
+	static void BreadthFirst(Node[][] maze) //Written by Robert Tiller
     {
 		
 	}

@@ -24,6 +24,8 @@ public class Maze {
                 rows++;
                 columns = scanner.nextLine().length();
             }
+            scanner.close();
+            
             maze = new Node[rows][columns]; // instantiate the maze with known dimensions
             
             // rescan the file now that the dimensions are known
@@ -43,7 +45,7 @@ public class Maze {
                     }
                 }
             }
-            
+            scanner.close();
             return maze;
         } catch (Exception ex) {
             System.out.println("File Not Found");
@@ -52,10 +54,10 @@ public class Maze {
         }
     }
     
-    public static void printMaze(Maze maze) {
-        for (int i = 0; i < maze.rows; i++) {
-            for (int j = 0; j < maze.columns; j++) {
-                System.out.print(maze.grid[i][j].type);
+    public void printMaze() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(grid[i][j].type);
             }
             System.out.println();
         }
