@@ -35,26 +35,33 @@ public class AStarSearch {
         	System.out.println("checking move areas"); // debugging output
         	System.out.println("current node is x=" + currentNode.x + " Y=" + currentNode.y); // debugging output
 
-    		if (maze.canMove(maze, currentNode, "north") ) {
+        	// set up directional nodes
+        	northNode = maze.goDirection(maze, currentNode, "north");
+        	eastNode =  maze.goDirection(maze, currentNode, "east");
+        	southNode = maze.goDirection(maze, currentNode, "south");
+        	westNode =  maze.goDirection(maze, currentNode, "west");
+        	
+    		if (maze.canMove(maze, currentNode, "north") && !northNode.checked) {
             	System.out.println("can move north"); // debugging output
-            	northNode = maze.goDirection(maze, currentNode, "north");
             	northValue = 1 + traveledDist + maze.calculateManDist(northNode, maze.goal);
     		}
-    		if (maze.canMove(maze, currentNode, "east") ) {
+    		if (maze.canMove(maze, currentNode, "east") && !eastNode.checked) {
             	System.out.println("can move east"); // debugging output
-            	eastNode =  maze.goDirection(maze, currentNode, "east");
             	eastValue = 1 + traveledDist + maze.calculateManDist(eastNode, maze.goal);
     		}
-    		if (maze.canMove(maze, currentNode, "south") ) {
+    		if (maze.canMove(maze, currentNode, "south") && !southNode.checked) {
             	System.out.println("can move south"); // debugging output
-            	southNode = maze.goDirection(maze, currentNode, "south");
             	southValue = 1 + traveledDist + maze.calculateManDist(southNode, maze.goal);
     		}
-    		if (maze.canMove(maze, currentNode, "west") ) {
+    		if (maze.canMove(maze, currentNode, "west") && !westNode.checked) {
             	System.out.println("can move west"); // debugging output
-            	westNode =  maze.goDirection(maze, currentNode, "west");
             	westValue = 1 + traveledDist + maze.calculateManDist(westNode, maze.goal);
     		}
+    		//mark all checked nodes as....well, checked!
+        	northNode.checked = true;
+        	eastNode.checked  = true;
+        	southNode.checked = true;
+        	westNode.checked  = true;
     		
     		//calculate which is least
     		if ( northValue < leastValue ) {
