@@ -9,13 +9,13 @@ public class main {
     	openMaze.printMaze();
     	
     	AStarSearch aStarSearchOpenMaze = new AStarSearch(openMaze);
-    	AStarSearch aStarSearchMedMaze = new AStarSearch(medMaze);
-    	AStarSearch aStarSearchLargeMaze = new AStarSearch(largeMaze);    	
+    	//AStarSearch aStarSearchMedMaze = new AStarSearch(medMaze);
+    	//AStarSearch aStarSearchLargeMaze = new AStarSearch(largeMaze);    	
 
     	
     	aStarSearchOpenMaze.doAStarSearch();
-    	aStarSearchMedMaze.doAStarSearch();
-    	aStarSearchLargeMaze.doAStarSearch();    	
+    	//aStarSearchMedMaze.doAStarSearch();
+    	//aStarSearchLargeMaze.doAStarSearch();    	
 
     	
     }

@@ -58,7 +58,7 @@ public class AStarSearch {
             	westValue = 1 + traveledDist + maze.calculateManDist(westNode, maze.goal);
     		}
     		//mark all checked nodes as....well, checked!
-        	northNode.checked = true;
+    		northNode.checked = true;
         	eastNode.checked  = true;
         	southNode.checked = true;
         	westNode.checked  = true;

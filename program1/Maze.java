@@ -78,19 +78,21 @@ public class Maze {
         } else {return false;}        	
    }
     
-    //return a node that is one space away in a given direction, for the sake of moving
+    // return a node that is one space away in a given direction, for the sake of moving
+    // this doesn't check to see if you could move there, so that should be done prior 
+    // to using this
     public Node goDirection(Maze maze, Node currentNode, String direction) {
         int x = currentNode.x;
         int y = currentNode.y;
         
         // return true if its not a wall(&)
-        if        ( direction == "north" && canMove(maze, currentNode, "north") ) {
+        if        ( direction == "north" ) {
         	return maze.grid[x][y-1];
-        } else if ( direction ==  "east" && canMove(maze, currentNode,  "east") ) {
+        } else if ( direction ==  "east" ) {
         	return maze.grid[x+1][y];
-        } else if ( direction == "south" && canMove(maze, currentNode, "south") ) { 
+        } else if ( direction == "south" ) { 
         	return maze.grid[x][y+1];
-        } else  if ( direction == "west" && canMove(maze, currentNode,  "west") ) { 
+        } else  if ( direction == "west" ) { 
         	return maze.grid[x-1][y];
         } else {return null;}        	
    }
