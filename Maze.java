@@ -84,14 +84,14 @@ public class Maze {
         int y = currentNode.y;
         
         // return true if its not a wall(&)
-        if        ( direction == "north" && canMove(maze, currentNode, "north") ) {
-        	return maze.grid[x-1][y];
-        } else if ( direction ==  "east" && canMove(maze, currentNode,  "east") ) {
-        	return maze.grid[x][y+1];
-        } else if ( direction == "south" && canMove(maze, currentNode, "south") ) { 
-        	return maze.grid[x+1][y];
-        } else  if ( direction == "west" && canMove(maze, currentNode,  "west") ) { 
+        if        ( direction == "north" ) {
         	return maze.grid[x][y-1];
+        } else if ( direction ==  "east" ) {
+        	return maze.grid[x+1][y];
+        } else if ( direction == "south" ) { 
+        	return maze.grid[x][y+1];
+        } else  if ( direction == "west" ) { 
+        	return maze.grid[x-1][y];
         } else {return null;}        	
    }
     
