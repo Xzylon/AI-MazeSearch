@@ -19,7 +19,7 @@ public class DepthFirstSearch {
         inMaze.start.parent = null;
         Node self = inMaze.start; //finds the root node
         
-        Stack<Node> stack = new Stack();
+        Stack<Node> stack = new Stack<Node>();
         stack.push(inMaze.start);
         //check in order and repeat. This format checks left first, then down, then right, then up
         while (!stack.isEmpty()) {
