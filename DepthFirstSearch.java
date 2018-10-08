@@ -19,15 +19,13 @@ public class DepthFirstSearch {
         inMaze.start.parent = null;
         Node self = inMaze.start; //finds the root node
         
-        Stack<Node> stack = new Stack<Node>();
+        Stack<Node> stack = new Stack();
         stack.push(inMaze.start);
-        inMaze.printMaze();
         //check in order and repeat. This format checks left first, then down, then right, then up
         while (!stack.isEmpty()) {
 
             self = stack.pop();
             //inMaze.grid[self.x][self.y].type = 'x';
-            //inMaze.printMaze();
             if (self == inMaze.goal) {
                 //TODO build the results jumping back up the parents
                 while (self != inMaze.start) {
@@ -43,25 +41,25 @@ public class DepthFirstSearch {
             } else {
                 expandedCount++;
                 self.checked = true;
-                if (inMaze.canMove(inMaze, self, "west") && !inMaze.grid[self.x][self.y - 1].checked) {
-                    inMaze.grid[self.x][self.y - 1].parent = inMaze.grid[self.x][self.y];
-                    stack.push(inMaze.grid[self.x][self.y - 1]);
-                    inMaze.grid[self.x][self.y - 1].checked = true;
+                if (inMaze.canMove(inMaze, self, "west") && !inMaze.grid[self.y][self.x - 1].checked) {
+                    inMaze.grid[self.y][self.x - 1].parent = inMaze.grid[self.y][self.x];
+                    stack.push(inMaze.grid[self.y][self.x - 1]);
+                    inMaze.grid[self.y][self.x - 1].checked = true;
                 }
-                if (inMaze.canMove(inMaze, self, "south") && !inMaze.grid[self.x + 1][self.y].checked) {
-                    inMaze.grid[self.x + 1][self.y].parent = inMaze.grid[self.x][self.y];
-                    stack.push(inMaze.grid[self.x + 1][self.y]);
-                    inMaze.grid[self.x + 1][self.y].checked = true;
+                if (inMaze.canMove(inMaze, self, "south") && !inMaze.grid[self.y + 1][self.x].checked) {
+                    inMaze.grid[self.y + 1][self.x].parent = inMaze.grid[self.y][self.x];
+                    stack.push(inMaze.grid[self.y + 1][self.x]);
+                    inMaze.grid[self.y + 1][self.x].checked = true;
                 }
-                if (inMaze.canMove(inMaze, self, "north") && !inMaze.grid[self.x - 1][self.y].checked) {
-                    inMaze.grid[self.x-1][self.y].parent = inMaze.grid[self.x][self.y];
-                    stack.push(inMaze.grid[self.x-1][self.y]);
-                    inMaze.grid[self.x-1][self.y].checked = true;
+                if (inMaze.canMove(inMaze, self, "north") && !inMaze.grid[self.y - 1][self.x].checked) {
+                    inMaze.grid[self.y-1][self.x].parent = inMaze.grid[self.y][self.x];
+                    stack.push(inMaze.grid[self.y-1][self.x]);
+                    inMaze.grid[self.y-1][self.x].checked = true;
                 }
-                if (inMaze.canMove(inMaze, self, "east") && !inMaze.grid[self.x][self.y + 1].checked) {
-                    inMaze.grid[self.x ][self.y + 1].parent = inMaze.grid[self.x][self.y];
-                    stack.push(inMaze.grid[self.x][self.y + 1]);
-                    inMaze.grid[self.x][self.y + 1].checked = true;
+                if (inMaze.canMove(inMaze, self, "east") && !inMaze.grid[self.y][self.x + 1].checked) {
+                    inMaze.grid[self.y][self.x + 1].parent = inMaze.grid[self.y][self.x];
+                    stack.push(inMaze.grid[self.y][self.x + 1]);
+                    inMaze.grid[self.y][self.x + 1].checked = true;
                 }
                 
             }
