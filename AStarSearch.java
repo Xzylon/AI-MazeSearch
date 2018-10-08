@@ -60,6 +60,7 @@ public class AStarSearch {
    	    	
         	// remove current node from the array 
 			frontierArray.remove(leastNodeIndex);
+			currentNode.checked = true;
         		
 			//check to see if we are next to the goal
             if ((maze.goDirection(maze, currentNode, "north").type=='*') || 

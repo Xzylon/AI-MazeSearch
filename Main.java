@@ -8,14 +8,6 @@
  *
 */
 
-
-
-// import java.math.*;
-// import java.io.*;
-import java.util.*;
-// import java.util.PriorityQueue;
-import java.util.Queue;
-
 public class Main {
     public static Maze medMaze = new Maze("medium maze.txt");
     public static Maze largeMaze = new Maze("large maze.txt");
