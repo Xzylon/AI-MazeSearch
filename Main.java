@@ -37,8 +37,8 @@ public class Main {
     
     
         // ** A* Search **
-        //AStarSearch aStarSearchOpenMaze = new AStarSearch(openMaze);
-        //aStarSearchOpenMaze.doAStarSearch();
+        AStarSearch aStarSearchOpenMaze = new AStarSearch(openMaze);
+        aStarSearchOpenMaze.doAStarSearch();
         
         //AStarSearch aStarSearchMedMaze = new AStarSearch(medMaze);
         //aStarSearchMedMaze.doAStarSearch();
