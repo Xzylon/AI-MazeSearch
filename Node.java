@@ -1,10 +1,9 @@
 public class Node {
     public int x, y;
     public boolean checked;
-    public float manhat;
     public char type;
     public Node parent;
-    public int f, g, h;
+    public int f, g, h, manhat;
     
     public Node() {
         x = 0;
