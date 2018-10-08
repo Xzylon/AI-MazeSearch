@@ -29,7 +29,7 @@ public class AStarSearch {
     	frontierArray.add(maze.start);
     	
    		while ( !frontierArray.isEmpty() ) {
-   			
+   	    	System.out.println(""); //debugging output
            	System.out.println("starting large while loop"); //debugging output
            	
    	    	if ( frontierArray.size() == 1) {
@@ -38,8 +38,8 @@ public class AStarSearch {
    	    	} else {
    	    		// check items in frontier array
         		for (int frontierCounter = 1; frontierCounter < frontierArray.size(); frontierCounter++) {
-       	           	System.out.println("comparing nodes in frontier, node=" + frontierCounter); //debugging output
-        			frontierArray.get(frontierCounter).checked = true;
+       	           	System.out.println("comparing " + frontierArray.size() + " nodes in frontier, node=" + frontierCounter); //debugging output
+        			//frontierArray.get(frontierCounter).checked = true;
         			if ( frontierArray.get(frontierCounter).f < frontierArray.get(frontierCounter - 1).f ) {
         				leastNodeIndex = frontierCounter;
         			}
@@ -47,12 +47,17 @@ public class AStarSearch {
    	    	}
         		
    	    	// output cheapest location
-   	    	System.out.println("output cheapest location");
+   	    	System.out.println("");
+   	    	System.out.println("output cheapest location from frontier");
    	    	frontierArray.get(leastNodeIndex).outputNodeInfo();
+   	    	System.out.println("");
    	    	
         	// now we are working with the least node, so make it current
         	currentNode = frontierArray.get(leastNodeIndex);
-        		
+   	    	System.out.println("output cheapest location from currentNode");
+   	    	currentNode.outputNodeInfo();
+   	    	System.out.println(""); //debugging output
+   	    	
         	// remove current node from the array 
 			frontierArray.remove(leastNodeIndex);
         		
@@ -67,6 +72,8 @@ public class AStarSearch {
         	}			
 			
 			// set up directional nodes and change their parents, calculate distances
+            
+            // check north direction **************************************************************
         	if ( maze.canMove(maze, currentNode, "north") ) { 
             	System.out.println("can move north"); // debugging output
                	tempg = currentNode.g + 1;
@@ -76,17 +83,24 @@ public class AStarSearch {
                	// get some outputs
                	System.out.println("g=" + tempg+" h=" + temph + " f=" + tempf); //debugging output
                	System.out.println("f of northerly direction="+maze.goDirection(maze, currentNode, "north").f); //debugging output
-               	System.out.println("maze.goDirection(maze, currentNode, south).f=" + maze.goDirection(maze, currentNode, "south").f);
-               	
+
+                // if our newly calculated value of f (tempf) is cheaper than what's on the node, add it
                	if ( tempf <= maze.goDirection(maze, currentNode, "north").f ) { // if this was already on the frontier from another direction, we would skip this
                		System.out.println("found cheaper node to the north"); //debugging output
+               		System.out.println("tempf=" + tempf + ", maze.goDirection(maze, currentNode, " +
+               				"south).f=" + maze.goDirection(maze, currentNode, "south").f); //debugging output
+           	    	System.out.println(""); //debugging output
                		
                		maze.goDirection(maze, currentNode, "north").parent = currentNode;
                		maze.goDirection(maze, currentNode, "north").f = tempf;
                		maze.goDirection(maze, currentNode, "north").g = tempg;
                		maze.goDirection(maze, currentNode, "north").h = temph;
                		frontierArray.add(maze.goDirection(maze, currentNode, "north"));
-               	} else if (maze.goDirection(maze, currentNode, " north").checked) {
+               		
+               	// our newly calculated value is MORE than what was already on the node
+               	// in this case we need to put this back on the frontier
+
+               	} else if (maze.goDirection(maze, currentNode, " north").checked) { 
                		System.out.println("found cheaper already on the frontier, so updating cheaper values"); // debugging output
            			maze.goDirection(maze, currentNode, " north").checked = false;
                		// process the cheaper node
@@ -97,6 +111,8 @@ public class AStarSearch {
                		frontierArray.add(maze.goDirection(maze, currentNode, " north"));
                	}
         	}
+        	
+            // check east direction **************************************************************
             if ( maze.canMove(maze, currentNode,  "east") ) { 
             	System.out.println("can move east"); // debugging output
                	tempg = currentNode.g + 1;
@@ -108,13 +124,18 @@ public class AStarSearch {
                	System.out.println("f of easterly direction=" + maze.goDirection(maze, currentNode, "east").f); //debugging output
                	System.out.println("maze.goDirection(maze, currentNode, south).f=" + maze.goDirection(maze, currentNode, "south").f);
                	
-               	if ( tempf <= maze.goDirection(maze, currentNode, "east").f) { // if this was already on the frontier from another direction, we would skip this
+               	// if our newly calculated value of f (tempf) is cheaper than what's on the node, add it
+               	if ( tempf <= maze.goDirection(maze, currentNode, "east").f) { 
                		System.out.println("found cheaper node to the east"); // debugging output
                		maze.goDirection(maze, currentNode, "east").parent = currentNode;
                		maze.goDirection(maze, currentNode, "east").f = tempf;
                		maze.goDirection(maze, currentNode, "east").g = tempg;
                		maze.goDirection(maze, currentNode, "east").h = temph;
                		frontierArray.add(maze.goDirection(maze, currentNode, "east"));
+               		
+               	// if our newly calculated value of f (tempf) is more expensive but we've already checked it, add it and remove checked flag
+              	// our newly calculated value is MORE than what was already on the node
+              	// in this case we need to put this back on the frontier
                	} else if (maze.goDirection(maze, currentNode, "east").checked) {
                		System.out.println("found cheaper already on the frontier, so updating cheaper values"); // debugging output
            			maze.goDirection(maze, currentNode, "east").checked = false;
@@ -126,6 +147,8 @@ public class AStarSearch {
                		frontierArray.add(maze.goDirection(maze, currentNode, "east"));
                	}
             }
+            
+            // check south direction **************************************************************
             if ( maze.canMove(maze, currentNode, "south") ) { 
             	System.out.println("can move south"); // debugging output
                	tempg = currentNode.g + 1;
@@ -136,7 +159,8 @@ public class AStarSearch {
                	System.out.println("g=" + tempg +" h=" + temph + " f=" + tempf); //debugging output
                	System.out.println("f of easterly direction=" + maze.goDirection(maze, currentNode, "south").f); //debugging output
                	System.out.println("maze.goDirection(maze, currentNode, south).f=" + maze.goDirection(maze, currentNode, "south").f);
-               	
+
+               	// if our newly calculated value of f (tempf) is cheaper than what's on the node, add it
                	if (tempf <= maze.goDirection(maze, currentNode, "south").f) { // if this was already on the frontier from another direction, we would skip this
                		System.out.println("found cheaper node to the south"); //debugging output
                		maze.goDirection(maze, currentNode, "south").parent = currentNode;
@@ -144,6 +168,8 @@ public class AStarSearch {
                		maze.goDirection(maze, currentNode, "south").g = tempg;
                		maze.goDirection(maze, currentNode, "south").h = temph;
                		frontierArray.add(maze.goDirection(maze, currentNode, "south"));
+               		
+                   	// if our newly calculated value of f (tempf) is more expensive but we've already checked it, add it and remove checked flag
                	} else if (maze.goDirection(maze, currentNode, "south").checked) {
                		System.out.println("found cheaper already on the frontier, so updating cheaper values"); // debugging output
            			maze.goDirection(maze, currentNode, "south").checked = false;
@@ -155,6 +181,8 @@ public class AStarSearch {
                		frontierArray.add(maze.goDirection(maze, currentNode, "south"));
                	}
             }
+            
+            // check west direction **************************************************************
             if ( maze.canMove(maze, currentNode,  "west") ) { 
             	System.out.println("can move west"); // debugging output
                	tempg = currentNode.g + 1;
@@ -184,6 +212,7 @@ public class AStarSearch {
                    		frontierArray.add(maze.goDirection(maze, currentNode, "west"));
                	}
             }
+            // done with directions  **************************************************************
    		}
     	// output frontier array after each node sweep
    		System.out.println("output frontier array after each node sweep");
