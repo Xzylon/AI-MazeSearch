@@ -1,5 +1,6 @@
 import java.io.File;
 import java.util.Scanner;
+import java.lang.Math;
 
 public class Maze {
     int rows;
@@ -8,9 +9,11 @@ public class Maze {
     Node goal;
     Node currentNode;
     Node[][] grid;
+    String mazeName;
     
     public Maze(String fileName) {
         this.grid = scanMaze(fileName);
+        mazeName = fileName;
     }
     
     public Node[][] scanMaze(String fileName) {
@@ -29,7 +32,7 @@ public class Maze {
             maze = new Node[rows][columns]; // instantiate the maze with known dimensions
             
             // rescan the file now that the dimensions are known
-            // this results in quadrant IV or the origin is in the upper left corner of the grid 
+            // this results in quadrant IV or the origin is in the upper left corner of the grid
             scanner = new Scanner(file);
             String line; // a line of the file
             while(scanner.hasNextLine()) {
@@ -79,8 +82,9 @@ public class Maze {
              (direction == "east"  && maze.grid [y]   [x+1].type != '%') ||
              (direction == "south" && maze.grid [y+1]   [x].type != '%') ||
              (direction == "west"  && maze.grid [y]   [x-1].type != '%') ) {
-        	return true;        	
-        } else {return false;}        	
+        	return true;
+        } else
+            return false;
    }
     
     //return a node that is one space away in a given direction, for the sake of moving
@@ -88,41 +92,29 @@ public class Maze {
         int x = currentNode.x;
         int y = currentNode.y;
         
-        // more outputs
-        // System.out.println("in go direction method");
-     	// System.out.println("currentnode X=" + x + ", Y=" + y + ", type=" + currentNode.type);
-        
         // return true if its not a wall(&)
         if        ( direction == "north" ) {
         	return maze.grid[y-1][x];
         } else if ( direction ==  "east" ) {
         	return maze.grid[y][x+1];
-        } else if ( direction == "south" ) { 
+        } else if ( direction == "south" ) {
         	return maze.grid[y+1][x];
-        } else  if ( direction == "west" ) { 
+        } else  if ( direction == "west" ) {
         	return maze.grid[y][x-1];
-        } else { return null; }
+        } else return null;
    }
     
     // goal test
     public boolean isGoal(Node node) {
-        if(node.type == '*')
+        if ( node.type == '*' )
             return true;
         else
             return false;
     }    
     
-    // calculate the Manhattan distance between two points
     public int calculateManDist(Node node1, Node node2) {
-        // 
-    	int distance = 0;
-    	
-    	if(node1.x > node2.x) { distance = node1.x - node2.x; }
-    	else { distance = node2.x - node1.x; }
-    	if(node1.y > node2.y) { distance = node1.y - node2.y; } 
-    	else { distance = node2.y - node1.y; }    	
+    	int distance = Math.abs(node1.x - node2.x) + Math.abs(node1.y - node2.y);
+        
         return distance;
     }
-    
-
 }
