@@ -10,19 +10,30 @@
 
 
 
-import java.math.*;
-import java.io.*;
+// import java.math.*;
+// import java.io.*;
 import java.util.*;
-import java.util.PriorityQueue;
+// import java.util.PriorityQueue;
 import java.util.Queue;
 
-public class main {
+public class Main {
     public static Maze medMaze = new Maze("medium maze.txt");
     public static Maze largeMaze = new Maze("large maze.txt");
     public static Maze openMaze = new Maze("open maze.txt");
     
     public static void main(String[] args) {
-    	medMaze.printMaze();
+    	openMaze.printMaze();
+    	
+    	AStarSearch aStarSearchOpenMaze = new AStarSearch(openMaze);
+    	aStarSearchOpenMaze.doAStarSearch();
+    	
+    	//AStarSearch aStarSearchMedMaze = new AStarSearch(medMaze);
+    	//aStarSearchMedMaze.doAStarSearch();    	
+    	
+    	//AStarSearch aStarSearchLargeMaze = new AStarSearch(largeMaze);    	
+    	//aStarSearchLargeMaze.doAStarSearch();    	
+
+    	
     }
     
 
@@ -59,7 +70,7 @@ public class main {
 								current = current.parent;
 								//Maze.printMaze(maze);
 							}
-							Maze.printMaze(maze);
+							maze.printMaze();
 							System.out.println("Found the End!!!");
 							System.out.println("Number of Nodes Expanded: " + ExpandedNodeCount);
 							System.out.println("Cost of Path: " + pathCost);
