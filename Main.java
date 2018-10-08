@@ -5,12 +5,7 @@
  * BFS
  * Greedy Best-first search
  * A* search
- *
-<<<<<<< HEAD
-*/
-=======
  */
->>>>>>> 98eaeb3495fc343fa6bd18f07fa6b296904a7ebe
 
 public class Main {
     public static Maze medMaze = new Maze("medium maze.txt");
