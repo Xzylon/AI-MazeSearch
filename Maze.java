@@ -46,6 +46,11 @@ public class Maze {
                     }
                 }
             }
+            // initialize start values
+            start.g = 0;
+            start.h = calculateManDist(start, goal);
+            goal.h = 0;
+            
             scanner.close();
             return maze;
         } catch (Exception ex) {
@@ -107,7 +112,7 @@ public class Maze {
             return false;
     }    
     
-    // calculate the Manhattan distance betwen two points
+    // calculate the Manhattan distance between two points
     public int calculateManDist(Node node1, Node node2) {
         // 
     	int distance = 0;
@@ -118,4 +123,6 @@ public class Maze {
     	else { distance = node2.y - node1.y; }    	
         return distance;
     }
+    
+
 }

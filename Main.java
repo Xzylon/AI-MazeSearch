@@ -22,7 +22,7 @@ public class Main {
     public static Maze openMaze = new Maze("open maze.txt");
     
     public static void main(String[] args) {
-    	//openMaze.printMaze();
+    	openMaze.printMaze();
     	
     	AStarSearch aStarSearchOpenMaze = new AStarSearch(openMaze);
     	aStarSearchOpenMaze.doAStarSearch();
