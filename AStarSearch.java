@@ -100,15 +100,15 @@ public class AStarSearch {
                	// our newly calculated value is MORE than what was already on the node
                	// in this case we need to put this back on the frontier
 
-               	} else if (maze.goDirection(maze, currentNode, " north").checked) { 
+               	} else if (maze.goDirection(maze, currentNode, "north").checked) { 
                		System.out.println("found cheaper already on the frontier, so updating cheaper values"); // debugging output
-           			maze.goDirection(maze, currentNode, " north").checked = false;
+           			maze.goDirection(maze, currentNode, "north").checked = false;
                		// process the cheaper node
-               		maze.goDirection(maze, currentNode, " north").parent = currentNode;
-                	maze.goDirection(maze, currentNode, " north").f = tempf;
-                	maze.goDirection(maze, currentNode, " north").g = tempg;
-                	maze.goDirection(maze, currentNode, " north").h = temph;
-               		frontierArray.add(maze.goDirection(maze, currentNode, " north"));
+               		maze.goDirection(maze, currentNode, "north").parent = currentNode;
+                	maze.goDirection(maze, currentNode, "north").f = tempf;
+                	maze.goDirection(maze, currentNode, "north").g = tempg;
+                	maze.goDirection(maze, currentNode, "north").h = temph;
+               		frontierArray.add(maze.goDirection(maze, currentNode, "north"));
                	}
         	}
         	
