@@ -4,6 +4,7 @@ public class Node {
     public float manhat;
     public char type;
     public Node parent;
+    public int f, g, h;
     
     public Node() {
         x = 0;
@@ -12,10 +13,12 @@ public class Node {
         checked = false;
         manhat = 0;
         parent = null;
-        
+        f = 2147483647;
+        g = 2147483647;
+        h = 2147483647;
     }
     
-    public Node(int x, int y, char type) {
+    public Node(int y, int x, char type) {
         this.x = x;
         this.y = y;
         this.type = type;

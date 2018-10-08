@@ -33,16 +33,16 @@ public class Maze {
             scanner = new Scanner(file);
             String line; // a line of the file
             while(scanner.hasNextLine()) {
-                for (int i = 0; i < rows; i++) {
+                for (int y = 0; y < rows; y++) {
                     line = scanner.nextLine();
-                    for (int j = 0; j < columns; j++) {
-                        maze[i][j] = new Node(i, j, line.charAt(j));
-                        if(line.charAt(j) == 'P') {
-                            start = maze[i][j];
-                            currentNode = maze[i][j];
+                    for (int x = 0; x < columns; x++) {
+                        maze[y][x] = new Node(y, x, line.charAt(x));
+                        if(line.charAt(x) == 'P') {
+                            start = maze[y][x];
+                            currentNode = maze[y][x];
                         }
-                        if(line.charAt(j) == '*')
-                            goal = maze[i][j];
+                        if(line.charAt(x) == '*')
+                            goal = maze[y][x];
                     }
                 }
             }
@@ -56,9 +56,9 @@ public class Maze {
     }
     
     public void printMaze() {
-        for (int i = 0; i < rows; i++) {
-            for (int j = 0; j < columns; j++) {
-                System.out.print(grid[i][j].type);
+        for (int y = 0; y < rows; y++) {
+            for (int x = 0; x < columns; x++) {
+                System.out.print(grid[y][x].type);
             }
             System.out.println();
         }
@@ -70,10 +70,10 @@ public class Maze {
         int y = currentNode.y;
         
         // return true if its not a wall(&)
-        if ( (direction == "north" && maze.grid [x-1]   [y].type != '%') ||
-             (direction == "east"  && maze.grid [x]   [y+1].type != '%') ||
-             (direction == "south" && maze.grid [x+1]   [y].type != '%') ||
-             (direction == "west"  && maze.grid [x]   [y-1].type != '%') ) {
+        if ( (direction == "north" && maze.grid [y-1]   [x].type != '%') ||
+             (direction == "east"  && maze.grid [y]   [x+1].type != '%') ||
+             (direction == "south" && maze.grid [y+1]   [x].type != '%') ||
+             (direction == "west"  && maze.grid [y]   [x-1].type != '%') ) {
         	return true;        	
         } else {return false;}        	
    }
@@ -83,16 +83,20 @@ public class Maze {
         int x = currentNode.x;
         int y = currentNode.y;
         
+        // more outputs
+        // System.out.println("in go direction method");
+     	// System.out.println("currentnode X=" + x + ", Y=" + y + ", type=" + currentNode.type);
+        
         // return true if its not a wall(&)
         if        ( direction == "north" ) {
-        	return maze.grid[x][y-1];
+        	return maze.grid[y-1][x];
         } else if ( direction ==  "east" ) {
-        	return maze.grid[x+1][y];
+        	return maze.grid[y][x+1];
         } else if ( direction == "south" ) { 
-        	return maze.grid[x][y+1];
+        	return maze.grid[y+1][x];
         } else  if ( direction == "west" ) { 
-        	return maze.grid[x-1][y];
-        } else {return null;}        	
+        	return maze.grid[y][x-1];
+        } else { return null; }
    }
     
     // goal test
@@ -103,6 +107,7 @@ public class Maze {
             return false;
     }    
     
+    // calculate the Manhattan distance betwen two points
     public int calculateManDist(Node node1, Node node2) {
         // 
     	int distance = 0;
