@@ -1,8 +1,5 @@
 import java.util.ArrayList;
-
-//
 // class to do A* search through a maze
-//
 // Jason Armstrong
 //
 public class AStarSearch {
@@ -22,7 +19,6 @@ public class AStarSearch {
 
 	public ArrayList<Node> doAStarSearch() {
 		frontierArray.add(maze.start);
-
 		while (!frontierArray.isEmpty()) {
 			if (frontierArray.size() == 1) {
 				leastNodeIndex = 0;
@@ -33,14 +29,8 @@ public class AStarSearch {
 					}
 				}
 			}
-
-			System.out.println("");
-			System.out.println("output cheapest location from frontier at position " + leastNodeIndex);
 			frontierArray.get(leastNodeIndex).outputNodeInfo();
-			System.out.println("");
-
 			currentNode = frontierArray.get(leastNodeIndex);
-
 			frontierArray.remove(leastNodeIndex);
 			currentNode.checked = true;
 
@@ -53,6 +43,7 @@ public class AStarSearch {
 				maze.goal.parent = currentNode;
 				break;
 			}
+			// check north direction **************************************************************
 			if (maze.canMove(maze, currentNode, "north") && !northNode.checked) {
 				tempg = currentNode.g + 1;
 				temph = maze.calculateManDist(northNode, maze.goal);
@@ -62,12 +53,12 @@ public class AStarSearch {
 						northNodeOnFrontier = true;
 					}
 				}
-				if (!northNodeOnFrontier) {
+				if (!northNodeOnFrontier) { // undiscovered node
 					northNode.g = tempg;
 					northNode.h = temph;
 					northNode.f = tempg + temph;
 					frontierArray.add(northNode);
-				} else if (tempg < northNode.g) {
+				} else if (tempg < northNode.g) { // found a better path
 					northNode.parent = currentNode;
 					northNode.g = tempg;
 					northNode.h = temph;
@@ -84,20 +75,19 @@ public class AStarSearch {
 						eastNodeOnFrontier = true;
 					}
 				}
-				if (!eastNodeOnFrontier) { // node isn't on the frontier
+				if (!eastNodeOnFrontier) { // undiscovered node
 					eastNode.g = tempg;
 					eastNode.h = temph;
 					eastNode.f = tempg + temph;
-					frontierArray.add(eastNode); // add it
-				} else if (tempg < eastNode.g) { // we found a better path
+					frontierArray.add(eastNode);
+				} else if (tempg < eastNode.g) { // found a better path
 					eastNode.parent = currentNode;
 					eastNode.g = tempg;
 					eastNode.h = temph;
 					eastNode.f = tempg + temph;
 				}
 			}
-			// check south direction
-			// **************************************************************
+			// check south direction **************************************************************
 			if (maze.canMove(maze, currentNode, "south") && !southNode.checked) {
 				tempg = currentNode.g + 1;
 				temph = maze.calculateManDist(southNode, maze.goal);
@@ -107,12 +97,12 @@ public class AStarSearch {
 						southNodeOnFrontier = true;
 					}
 				}
-				if (!southNodeOnFrontier) { // node isn't on the frontier
+				if (!southNodeOnFrontier) { // undiscovered node
 					southNode.g = tempg;
 					southNode.h = temph;
 					southNode.f = tempg + temph;
-					frontierArray.add(southNode); // add it
-				} else if (tempg < southNode.g) { // we found a better path
+					frontierArray.add(southNode);
+				} else if (tempg < southNode.g) { // found a better path
 					southNode.parent = currentNode;
 					southNode.g = tempg;
 					southNode.h = temph;
@@ -129,19 +119,18 @@ public class AStarSearch {
 						westNodeOnFrontier = true;
 					}
 				}
-				if (!westNodeOnFrontier) { // node isn't on the frontier
+				if (!westNodeOnFrontier) { // undiscovered node
 					westNode.g = tempg;
 					westNode.h = temph;
 					westNode.f = tempg + temph;
-					frontierArray.add(westNode); // add it
-				} else if (tempg < westNode.g) { // we found a better path
+					frontierArray.add(westNode);
+				} else if (tempg < westNode.g) { // found a better path
 					westNode.parent = currentNode;
 					westNode.g = tempg;
 					westNode.h = temph;
 					westNode.f = tempg + temph;
 				}
 			}
-			System.out.println("end of direction statements");
 			// done with directions **************************************************************
 		}
 		return frontierArray;
