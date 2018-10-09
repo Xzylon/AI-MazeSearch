@@ -31,18 +31,12 @@ public class Node {
     }
     
     public void outputNodeInfo() { //generally used for debugging
-<<<<<<< HEAD
-<<<<<<< HEAD
         System.out.println("x=" + x + " y=" + y + " type=" + type + " checked=" + checked);
-=======
         System.out.println("x=" + x + " y=" + y + " type=" + type + " checked=" + checked + " manhat=" + manhat);
->>>>>>> parent of e535404... Major changes to A* search
         System.out.print("f="+f + " g="+g + " h="+h);
-=======
         System.out.println("x=" + x + " y=" + y + " type=" + type);
         System.out.println("checked=" + checked + " manhat=" + manhat);
         System.out.println("f="+f + " g="+g + " h="+h);
->>>>>>> parent of 0f9c002... Still debugging A*
         if (parent == null) {
             System.out.println("no parent");
         } else {
