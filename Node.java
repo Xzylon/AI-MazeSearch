@@ -31,7 +31,7 @@ public class Node {
     }
     
     public void outputNodeInfo() { //generally used for debugging
-        System.out.println("x=" + x + " y=" + y + " type=" + type + " checked=" + checked + " manhat=" + manhat);
+        System.out.println("x=" + x + " y=" + y + " type=" + type + " checked=" + checked);
         System.out.print("f="+f + " g="+g + " h="+h);
         if (parent == null) {
             System.out.println(" no parent");

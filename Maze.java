@@ -49,9 +49,10 @@ public class Maze {
                     }
                 }
             }
-            // initialize start values
+            // initialize start and goal values
             start.g = 0;
             start.h = calculateManDist(start, goal);
+            start.f = start.g + start.h;
             goal.h = 0;
             
             scanner.close();
