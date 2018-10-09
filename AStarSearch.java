@@ -17,7 +17,8 @@ public class AStarSearch {
 		currentNode = maze.start;
 	}
 
-	public ArrayList<Node> doAStarSearch() {
+	public void doAStarSearch() {
+		System.out.println("beginning search...");
 		frontierArray.add(maze.start);
 		while (!frontierArray.isEmpty()) {
 			if (frontierArray.size() == 1) {
@@ -29,11 +30,20 @@ public class AStarSearch {
 					}
 				}
 			}
+			
+			//before node removal from frontier
+			System.out.println("before node removal from frontier");
+			outputFrontier(frontierArray);
+			
 			frontierArray.get(leastNodeIndex).outputNodeInfo();
 			currentNode = frontierArray.get(leastNodeIndex);
 			frontierArray.remove(leastNodeIndex);
 			currentNode.checked = true;
 
+			//after node removal from frontier
+			System.out.println("after node removal from frontier");
+			outputFrontier(frontierArray);
+			
 			northNode = maze.goDirection(maze, currentNode, "north");
 			eastNode = maze.goDirection(maze, currentNode, "east");
 			southNode = maze.goDirection(maze, currentNode, "south");
@@ -133,10 +143,17 @@ public class AStarSearch {
 			}
 			// done with directions **************************************************************
 		}
-		return frontierArray;
+		outputPath();
 	}
 
-
+	public void outputPath() {
+		Node current = maze.goal;
+		while ( current.x != maze.start.x && current.x != maze.start.x ) {
+			System.out.println("backwards from goal, x=" + current.x + " y=" + current.y);
+			current = current.parent;
+		}
+	}
+	
 	public void outputFrontier(ArrayList<Node> frontier) {
 		System.out.println("output: frontier entries=" + frontier.size());
 		for (int counter = 0; counter < frontier.size(); counter++) {
