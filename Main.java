@@ -20,25 +20,25 @@ public class Main {
         
         
         // ** Breadth First Search **
-		/*
-		System.out.println("\n\n\n---------------------------------------\n Breadth First Maze medMaze \n ---------------------------------------");
-        BreadthFirst medBFS = new BreadthFirst(medMaze);
-        System.out.println("\n\n\n---------------------------------------\n Breadth First Maze largeMaze \n ---------------------------------------");
-        BreadthFirst largeBFS = new BreadthFirst(largeMaze);
-        System.out.println("\n\n\n---------------------------------------\n Breadth First Maze openMaze \n ---------------------------------------");
-        BreadthFirst openBFS = new BreadthFirst(openMaze);
-		*/
+		//
+		//System.out.println("\n\n\n---------------------------------------\n Breadth First Maze medMaze \n ---------------------------------------");
+        //BreadthFirst medBFS = new BreadthFirst(medMaze);
+        //System.out.println("\n\n\n---------------------------------------\n Breadth First Maze largeMaze \n ---------------------------------------");
+        //BreadthFirst largeBFS = new BreadthFirst(largeMaze);
+        //System.out.println("\n\n\n---------------------------------------\n Breadth First Maze openMaze \n ---------------------------------------");
+        //BreadthFirst openBFS = new BreadthFirst(openMaze);
+		//
 		
 		
 		// ** Depth First Search **
-        //DepthFirstSearch medDFS = new DepthFirstSearch(medMaze);
-        //DepthFirstSearch largeDFS = new DepthFirstSearch(largeMaze);
-        //DepthFirstSearch openDFS = new DepthFirstSearch(openMaze);
+        DepthFirstSearch medDFS = new DepthFirstSearch(medMaze);
+        DepthFirstSearch largeDFS = new DepthFirstSearch(largeMaze);
+        DepthFirstSearch openDFS = new DepthFirstSearch(openMaze);
     
     
         // ** A* Search **
-        AStarSearch aStarSearchOpenMaze = new AStarSearch(openMaze);
-        aStarSearchOpenMaze.doAStarSearch();
+        //AStarSearch aStarSearchOpenMaze = new AStarSearch(openMaze);
+        //aStarSearchOpenMaze.doAStarSearch();
         
         //AStarSearch aStarSearchMedMaze = new AStarSearch(medMaze);
         //aStarSearchMedMaze.doAStarSearch();

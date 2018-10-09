@@ -53,7 +53,7 @@ public class BreadthFirstSearch {
                         return;
                 }
 
-                //if node isnt goal check around it and push to queue
+                //if node isn't goal check around it and push to queue
                 else
                 {
                         //Count Nodes Expanded

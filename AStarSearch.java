@@ -11,7 +11,7 @@ public class AStarSearch {
 	ArrayList<Node> pathArray = new ArrayList<Node>();
 	String leastDirection;
 	ArrayList<Node> frontierArray = new ArrayList<Node>();
-
+	int nodeCount; // used to keep tack of total nodes expanded or inspected
 	public AStarSearch(Maze inMaze) {
 		maze = inMaze;
 		currentNode = maze.start;
@@ -20,6 +20,7 @@ public class AStarSearch {
 	public void doAStarSearch() {
 		System.out.println("beginning search...");
 		frontierArray.add(maze.start);
+		nodeCount=1;
 		while (!frontierArray.isEmpty()) {
 			if (frontierArray.size() == 1) {
 				leastNodeIndex = 0;
@@ -33,15 +34,18 @@ public class AStarSearch {
 			
 			//before node removal from frontier
 			System.out.println("before node removal from frontier");
+			System.out.println("     frontier size=" + frontierArray.size() + "   least index=" + leastNodeIndex);
 			outputFrontier(frontierArray);
+			System.out.println("output least node details (to be removed)");
+			frontierArray.get(leastNodeIndex).altOutputNodeInfo();
 			
-			frontierArray.get(leastNodeIndex).outputNodeInfo();
 			currentNode = frontierArray.get(leastNodeIndex);
 			frontierArray.remove(leastNodeIndex);
 			currentNode.checked = true;
 
 			//after node removal from frontier
 			System.out.println("after node removal from frontier");
+			System.out.println("     frontier size=" + frontierArray.size() + "   least index=" + leastNodeIndex);
 			outputFrontier(frontierArray);
 			
 			northNode = maze.goDirection(maze, currentNode, "north");
@@ -53,6 +57,8 @@ public class AStarSearch {
 				maze.goal.parent = currentNode;
 				break;
 			}
+			System.out.println("starting on directions");
+			
 			// check north direction **************************************************************
 			if (maze.canMove(maze, currentNode, "north") && !northNode.checked) {
 				tempg = currentNode.g + 1;
@@ -64,6 +70,7 @@ public class AStarSearch {
 					}
 				}
 				if (!northNodeOnFrontier) { // undiscovered node
+					nodeCount++;
 					northNode.g = tempg;
 					northNode.h = temph;
 					northNode.f = tempg + temph;
@@ -86,6 +93,7 @@ public class AStarSearch {
 					}
 				}
 				if (!eastNodeOnFrontier) { // undiscovered node
+					nodeCount++;
 					eastNode.g = tempg;
 					eastNode.h = temph;
 					eastNode.f = tempg + temph;
@@ -108,6 +116,7 @@ public class AStarSearch {
 					}
 				}
 				if (!southNodeOnFrontier) { // undiscovered node
+					nodeCount++;
 					southNode.g = tempg;
 					southNode.h = temph;
 					southNode.f = tempg + temph;
@@ -130,6 +139,7 @@ public class AStarSearch {
 					}
 				}
 				if (!westNodeOnFrontier) { // undiscovered node
+					nodeCount++;
 					westNode.g = tempg;
 					westNode.h = temph;
 					westNode.f = tempg + temph;
@@ -142,6 +152,7 @@ public class AStarSearch {
 				}
 			}
 			// done with directions **************************************************************
+			System.out.println("Nodes inspected=" + nodeCount);
 		}
 		outputPath();
 	}
@@ -157,9 +168,8 @@ public class AStarSearch {
 	public void outputFrontier(ArrayList<Node> frontier) {
 		System.out.println("output: frontier entries=" + frontier.size());
 		for (int counter = 0; counter < frontier.size(); counter++) {
-			System.out.println("frontier entry #" + counter);
-			frontier.get(counter).outputNodeInfo();
+			System.out.println("     frontier entry #" + counter);
+			frontier.get(counter).altOutputNodeInfo();
 		}
-		System.out.println("");
 	}
 }
